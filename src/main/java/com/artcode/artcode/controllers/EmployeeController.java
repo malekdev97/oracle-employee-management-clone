@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @GetMapping("/test")
+    public ResponseEntity<?> testEndpoint() {
+        return ResponseEntity.ok("API is working");
+    }
 
     @GetMapping
     public ResponseEntity<?> getAll() {
