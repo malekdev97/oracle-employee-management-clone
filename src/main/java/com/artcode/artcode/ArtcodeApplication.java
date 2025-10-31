@@ -8,10 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class ArtcodeApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(ArtcodeApplication.class, args);
-
-		context.getBean("HeavyResource");
-		context.getBean("HeavyResource");
+		SpringApplication.run(ArtcodeApplication.class, args);
 	}
 
 }

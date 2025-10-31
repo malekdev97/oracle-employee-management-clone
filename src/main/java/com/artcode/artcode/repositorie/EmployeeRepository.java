@@ -1,4 +1,4 @@
-package com.artcode.artcode.repositories;
+package com.artcode.artcode.repositorie;
 
 import com.artcode.artcode.models.Employee;
 import org.springframework.stereotype.Repository;
