@@ -1,5 +1,6 @@
 package com.artcode.artcode.controllers;
 
+import com.artcode.artcode.dto.EmployeeDto;
 import com.artcode.artcode.models.Employee;
 import com.artcode.artcode.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -24,8 +25,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeService.getEmployeeById(id);
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
+        EmployeeDto employee = employeeService.getEmployeeById(id);
         return ResponseEntity.ok(employee);
     }
 

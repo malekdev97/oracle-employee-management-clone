@@ -1,5 +1,6 @@
 package com.artcode.artcode.service;
 
+import com.artcode.artcode.dto.EmployeeDto;
 import com.artcode.artcode.models.Employee;
 import com.artcode.artcode.repositorie.EmployeeRepository;
 import com.artcode.artcode.util.exception.EmployeeNotFoundException;
@@ -21,12 +22,13 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Employee getEmployeeById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Employee not found with id: " + id
-                ));
+    public EmployeeDto getEmployeeById(Long id) {
+        Employee employee = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException
+                        (HttpStatus.NOT_FOUND, "Employee not found with id: " + id));
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setName(employee.getName());
+        return employeeDto;
     }
 
     @Override
