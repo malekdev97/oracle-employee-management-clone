@@ -4,7 +4,9 @@ import com.artcode.artcode.models.Employee;
 import com.artcode.artcode.repositorie.EmployeeRepository;
 import com.artcode.artcode.util.exception.EmployeeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -21,7 +23,10 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Employee getEmployeeById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Employee not found with id: " + id
+                ));
     }
 
     @Override
@@ -32,7 +37,9 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Employee updateEmployee(Long id, Employee employee) {
         Employee existing = repository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Employee not found with id: " + id));
         existing.setName(employee.getName());
         return repository.save(existing);
     }

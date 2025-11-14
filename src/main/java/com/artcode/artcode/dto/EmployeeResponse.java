@@ -1,19 +1,9 @@
-package com.artcode.artcode.models;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+package com.artcode.artcode.dto;
 
-@Entity
-@Table(name = "employees")
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmployeeResponse {
+
     private Long id;
-
-    @NotBlank(message = "Name is required")
     private String name;
-
-    @NotBlank(message = "Job is required")
     private String job;
 
     public Long getId() {
